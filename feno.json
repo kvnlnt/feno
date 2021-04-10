@@ -1,0 +1,15 @@
+{
+  "$schema": "./feno.schema.json",
+  "namespace": "f",
+  "tokens": {
+    "colors": {
+      "black": "hsl(0,100%,100%)",
+      "white": "hsl(100,100%,100%)",
+      "grey": "hsl(100,100%,100%)",
+      "blue": "hsl(100,100%,100%)",
+      "green": "hsl(100,100%,100%)",
+      "red": "hsl(100,100%,100%)",
+      "yellow": "hsl(100,100%,100%)"
+    }
+  }
+}

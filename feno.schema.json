@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/product.schema.json",
+  "$defs": {
+    "hsl": {
+      "description": "HSL value",
+      "type": "string",
+      "pattern": "^hsl\\(\\s*(0|[1-9]\\d?|[12]\\d\\d|3[0-5]\\d)\\s*,\\s*((0|[1-9]\\d?|100)%)\\s*,\\s*((0|[1-9]\\d?|100)%)\\s*\\)$"
+    }
+  },
+  "title": "Feno",
+  "description": "Feno types",
+  "type": "object",
+  "properties": {
+    "namespace": {
+      "description": "Prefix automatically prepended to all atoms",
+      "type": "string"
+    },
+    "tokens": {
+      "description": "Settings globally available to all themes",
+      "type": "object",
+      "properties": {
+        "colors": {
+          "description": "Colors",
+          "type": "object",
+          "properties": {
+            "black": { "$ref": "#/$defs/hsl", "default": "hsl(0,100%,100%)" },
+            "white": { "$ref": "#/$defs/hsl", "default": "hsl(100,100%,100%)" },
+            "grey": { "$ref": "#/$defs/hsl", "default": "hsl(100,100%,100%)" },
+            "green": {
+              "$ref": "#/$defs/hsl",
+              "default": "hsl(100,100%,100%)"
+            },
+            "red": { "$ref": "#/$defs/hsl", "default": "hsl(100,100%,100%)" },
+            "yellow": {
+              "$ref": "#/$defs/hsl",
+              "default": "hsl(100,100%,100%)"
+            },
+            "blue": { "$ref": "#/$defs/hsl", "default": "hsl(100,100%,100%)" }
+          },
+          "required": [
+            "black",
+            "white",
+            "grey",
+            "green",
+            "red",
+            "yellow",
+            "blue"
+          ]
+        }
+      },
+      "required": ["colors"]
+    }
+  },
+  "required": ["namespace", "tokens"]
+}

@@ -12,10 +12,37 @@
   "description": "Feno types",
   "type": "object",
   "properties": {
-    "outfile": {
-      "description": "Settings globally available to all themes",
-      "type": "string",
-      "default": "styles.css"
+    "rendering": {
+      "description": "Rendering settings",
+      "type": "object",
+      "properties": {
+        "outfile": {
+          "description": "Settings globally available to all themes",
+          "type": "string",
+          "default": "styles.css"
+        },
+        "renderAtoms": {
+          "description": "Generate css classes for elements",
+          "type": "boolean",
+          "default": true
+        },
+        "renderElementRecipes": {
+          "description": "Generate atom recipes for elements",
+          "type": "boolean",
+          "default": true
+        },
+        "renderElementSelectors": {
+          "description": "Generate css classes for elements",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": [
+        "outfile",
+        "renderAtoms",
+        "renderElementRecipes",
+        "renderElementSelectors"
+      ]
     },
     "themes": {
       "type": "array",
@@ -75,11 +102,35 @@
               }
             },
             "required": ["colors"]
+          },
+          "elements": {
+            "description": "Element styling",
+            "type": "object",
+            "properties": {
+              "button": {
+                "description": "Button",
+                "type": "object",
+                "properties": {
+                  "selector": {
+                    "description": "Css Selector",
+                    "type": "string",
+                    "default": ""
+                  },
+                  "atoms": {
+                    "description": "Space separated list of atoms",
+                    "type": "string",
+                    "default": ""
+                  }
+                },
+                "required": ["selector", "atoms"]
+              },
+              "required": ["button"]
+            }
           }
         },
-        "required": ["prefix", "tokens"]
+        "required": ["prefix", "tokens", "elements"]
       }
     }
   },
-  "required": ["outfile", "themes"]
+  "required": ["rendering", "themes"]
 }

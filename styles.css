@@ -1,36 +1,18 @@
-.a {
-   --black: hsl(0,100%,0%);
-   --white: hsl(100,100%,100%);
-   --grey: hsl(100,100%,50%);
-}
-.b {
-   --black: hsl(0,100%,0%);
-   --white: hsl(100,100%,100%);
-   --grey: hsl(100,100%,50%);
-}
-
-/* font */
-.a .a_ff_a { font-family: Arial; }
-.a .a_ff_b { font-family: Arial; }
-.a .a_ff_c { font-family: Arial; }
-.a .a_fc_black { color: var(--black); }
-.a .a_fc_white { color: var(--white); }
-.a .a_fc_grey { color: var(--grey); }
-
-/* bg */
-.a .a_bgc_black { background-color: var(--black); }
-.a .a_bgc_white { background-color: var(--white); }
-.a .a_bgc_grey { background-color: var(--grey); }
-
-/* font */
-.b .b_ff_a { font-family: Times; }
-.b .b_ff_b { font-family: Times; }
-.b .b_ff_c { font-family: Times; }
-.b .b_fc_black { color: var(--black); }
-.b .b_fc_white { color: var(--white); }
-.b .b_fc_grey { color: var(--grey); }
-
-/* bg */
-.b .b_bgc_black { background-color: var(--black); }
-.b .b_bgc_white { background-color: var(--white); }
-.b .b_bgc_grey { background-color: var(--grey); }
+.lgt .lgt_ff_a { font-family: Arial }
+.lgt .lgt_ff_b { font-family: Arial }
+.lgt .lgt_ff_c { font-family: Arial }
+.lgt .lgt_fc_black { color: hsl(0,100%,0%) }
+.lgt .lgt_fc_white { color: hsl(100,100%,100%) }
+.lgt .lgt_fc_grey { color: hsl(100,100%,50%) }
+.lgt .lgt_bgc_black { background-color: hsl(0,100%,0%) }
+.lgt .lgt_bgc_white { background-color: hsl(100,100%,100%) }
+.lgt .lgt_bgc_grey { background-color: hsl(100,100%,50%) }
+.drk .drk_ff_a { font-family: Times }
+.drk .drk_ff_b { font-family: Times }
+.drk .drk_ff_c { font-family: Times }
+.drk .drk_fc_black { color: hsl(0,100%,0%) }
+.drk .drk_fc_white { color: hsl(100,100%,100%) }
+.drk .drk_fc_grey { color: hsl(100,100%,50%) }
+.drk .drk_bgc_black { background-color: hsl(0,100%,0%) }
+.drk .drk_bgc_white { background-color: hsl(100,100%,100%) }
+.drk .drk_bgc_grey { background-color: hsl(100,100%,50%) }

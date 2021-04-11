@@ -1,9 +1,14 @@
 {
   "$schema": "./feno.schema.json",
-  "outfile": "styles.css",
+  "rendering": {
+    "outfile": "styles.css",
+    "renderAtoms": true,
+    "renderElementRecipes": true,
+    "renderElementSelectors": false
+  },
   "themes": [
     {
-      "prefix": "a",
+      "prefix": "lgt",
       "tokens": {
         "colors": {
           "black": "hsl(0,100%,0%)",
@@ -15,10 +20,16 @@
           "b": "Arial",
           "c": "Arial"
         }
+      },
+      "elements": {
+        "button": {
+          "selector": "button",
+          "atoms": "light_bgc_black light_fc_white light_ff_a"
+        }
       }
     },
     {
-      "prefix": "b",
+      "prefix": "drk",
       "tokens": {
         "colors": {
           "black": "hsl(0,100%,0%)",
@@ -29,6 +40,12 @@
           "a": "Times",
           "b": "Times",
           "c": "Times"
+        }
+      },
+      "elements": {
+        "button": {
+          "selector": "button",
+          "atoms": "light_bgc_black light_fc_white light_ff_a"
         }
       }
     }

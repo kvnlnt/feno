@@ -1,23 +1,35 @@
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css" />
-    <script>
-      function setTheme(theme) {
-        document.body.className = theme;
-      }
-    </script>
+    <style>.lgt .lgt_ff_a { font-family: Arial }
+.lgt .lgt_ff_b { font-family: Arial }
+.lgt .lgt_ff_c { font-family: Arial }
+.lgt .lgt_fc_black { color: hsl(0,100%,0%) }
+.lgt .lgt_fc_white { color: hsl(100,100%,100%) }
+.lgt .lgt_fc_grey { color: hsl(100,100%,50%) }
+.lgt .lgt_bgc_black { background-color: hsl(0,100%,0%) }
+.lgt .lgt_bgc_white { background-color: hsl(100,100%,100%) }
+.lgt .lgt_bgc_grey { background-color: hsl(100,100%,50%) }
+.drk .drk_ff_a { font-family: Times }
+.drk .drk_ff_b { font-family: Times }
+.drk .drk_ff_c { font-family: Times }
+.drk .drk_fc_black { color: hsl(0,100%,0%) }
+.drk .drk_fc_white { color: hsl(100,100%,100%) }
+.drk .drk_fc_grey { color: hsl(100,100%,50%) }
+.drk .drk_bgc_black { background-color: hsl(0,100%,0%) }
+.drk .drk_bgc_white { background-color: hsl(100,100%,100%) }
+.drk .drk_bgc_grey { background-color: hsl(100,100%,50%) }</style>
   </head>
-  <body class="a">
+  <body class="lgt">
   <button
-      class="a_bgc_black a_fc_white a_ff_a b_bgc_grey b_fc_black b_ff_a"
-      onclick="document.body.className='a'"
+      class="lgt_bgc_black lgt_fc_white lgt_ff_a"
+      onclick="document.body.className='lgt'"
     >
-      a
+      lgt
     </button><button
-      class="a_bgc_black a_fc_white a_ff_a b_bgc_grey b_fc_black b_ff_a"
-      onclick="document.body.className='b'"
+      class="lgt_bgc_black lgt_fc_white lgt_ff_a"
+      onclick="document.body.className='drk'"
     >
-      b
+      drk
     </button>
   </body>
 </html>

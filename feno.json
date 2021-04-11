@@ -1,15 +1,36 @@
 {
   "$schema": "./feno.schema.json",
-  "namespace": "f",
-  "tokens": {
-    "colors": {
-      "black": "hsl(0,100%,100%)",
-      "white": "hsl(100,100%,100%)",
-      "grey": "hsl(100,100%,100%)",
-      "blue": "hsl(100,100%,100%)",
-      "green": "hsl(100,100%,100%)",
-      "red": "hsl(100,100%,100%)",
-      "yellow": "hsl(100,100%,100%)"
+  "outfile": "styles.css",
+  "themes": [
+    {
+      "prefix": "a",
+      "tokens": {
+        "colors": {
+          "black": "hsl(0,100%,0%)",
+          "white": "hsl(100,100%,100%)",
+          "grey": "hsl(100,100%,50%)"
+        },
+        "fonts": {
+          "a": "Arial",
+          "b": "Arial",
+          "c": "Arial"
+        }
+      }
+    },
+    {
+      "prefix": "b",
+      "tokens": {
+        "colors": {
+          "black": "hsl(0,100%,0%)",
+          "white": "hsl(100,100%,100%)",
+          "grey": "hsl(100,100%,50%)"
+        },
+        "fonts": {
+          "a": "Times",
+          "b": "Times",
+          "c": "Times"
+        }
+      }
     }
-  }
+  ]
 }

@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "downlevelIteration": true,
-    "paths": {
-      "~*": ["./*"]
-    },
     "target": "ESNext",
     "outDir": "./dist",
     "sourceMap": true,
@@ -17,6 +15,6 @@
     "allowJs": true,
     "lib": ["es2017", "dom"]
   },
-  "include": ["src/**/*"],
+  "include": ["**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

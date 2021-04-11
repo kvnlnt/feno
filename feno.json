@@ -22,10 +22,7 @@
         }
       },
       "elements": {
-        "button": {
-          "selector": "button",
-          "atoms": "light_bgc_black light_fc_white light_ff_a"
-        }
+        "button": "lgt_bgc_black lgt_fc_white lgt_ff_a"
       }
     },
     {
@@ -43,10 +40,7 @@
         }
       },
       "elements": {
-        "button": {
-          "selector": "button",
-          "atoms": "light_bgc_black light_fc_white light_ff_a"
-        }
+        "button": "drk_bgc_black drk_fc_white drk_ff_a"
       }
     }
   ]

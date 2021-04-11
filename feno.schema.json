@@ -109,20 +109,9 @@
             "properties": {
               "button": {
                 "description": "Button",
-                "type": "object",
-                "properties": {
-                  "selector": {
-                    "description": "Css Selector",
-                    "type": "string",
-                    "default": ""
-                  },
-                  "atoms": {
-                    "description": "Space separated list of atoms",
-                    "type": "string",
-                    "default": ""
-                  }
-                },
-                "required": ["selector", "atoms"]
+                "type": "string",
+                "default":""
+                }
               },
               "required": ["button"]
             }

@@ -1,37 +1,51 @@
 import fs from 'fs';
 import { rendering, themes } from './feno.json';
 
-const preRenderAtoms = () => {
-  return themes.reduce((acc, { prefix, tokens }) => {
-    const collection: Record<string, string> = {};
+type PreRenderedAtoms = Record<string, string>;
 
+const preRenderAtoms = () => {
+  const collection: Record<string, string> = {};
+  themes.forEach(({ prefix, tokens }) => {
     // FONTS
 
     // families
-    collection[`ff_a`] = `font-family: ${tokens.fonts.a}`;
-    collection[`ff_b`] = `font-family: ${tokens.fonts.b}`;
-    collection[`ff_c`] = `font-family: ${tokens.fonts.c}`;
+    collection[`${prefix}_ff_a`] = `font-family: ${tokens.fonts.a}`;
+    collection[`${prefix}_ff_b`] = `font-family: ${tokens.fonts.b}`;
+    collection[`${prefix}_ff_c`] = `font-family: ${tokens.fonts.c}`;
 
     // colors
     Object.entries(tokens.colors).forEach(([k, v]) => {
-      collection['fc_' + k] = `color: ${v}`;
+      collection[`${prefix}_fc_${k}`] = `color: ${v}`;
     });
 
     // BG
 
     // colors
     Object.entries(tokens.colors).forEach(([k, v]) => {
-      collection['bgc_' + k] = `background-color: ${v}`;
+      collection[`${prefix}_bgc_${k}`] = `background-color: ${v}`;
     });
-
-    acc[prefix] = collection;
-    return acc;
-  }, {} as Record<string, Record<string, string>>);
+  });
+  return collection;
 };
 
-const renderAtoms = (
-  preRenderedAtoms: Record<string, Record<string, string>>
-) => {
+const preRenderElements = (preRenderedAtoms: PreRenderedAtoms) => {
+  const collection: Record<string, { atoms: string; styles: string[] }> = {};
+
+  // buttons
+  collection['button'] = {
+    atoms: themes.map((t) => `${t.elements.button}`).join(' '),
+    styles: themes.reduce(
+      (acc, curr) => [
+        ...acc,
+        ...curr.elements.button.split(' ').map((el) => preRenderedAtoms[el]),
+      ],
+      [] as string[]
+    ),
+  };
+  return collection;
+};
+
+const renderAtoms = (preRenderedAtoms: PreRenderedAtoms) => {
   return Object.entries(preRenderedAtoms)
     .map(([theme, atoms]) =>
       Object.entries(atoms)
@@ -41,29 +55,35 @@ const renderAtoms = (
     .join('\n');
 };
 
-const renderKitchenSink = (styles: string) => {
-  const themeButtons = themes
-    .map(
-      (theme) => `<button
-      class="lgt_bgc_black lgt_fc_white lgt_ff_a"
-      onclick="document.body.className='${theme.prefix}'"
-    >
-      ${theme.prefix}
-    </button>`
-    )
-    .join('');
+// const renderKitchenSink = () => {
+//   // Buttons
 
-  return `<html>
-  <head>
-    <style>${styles}</style>
-  </head>
-  <body class="${themes[0].prefix}">
-  ${themeButtons}
-  </body>
-</html>`;
-};
+//   // const themeButtons = themes
+//   //   .map(
+//   //     ({ prefix }) => `<button
+//   //     class="${themes
+//   //       .map(({ elements }) => `${elements.button.atoms}`)
+//   //       .join(' ')}"
+//   //     onclick="document.body.className='${prefix}'"
+//   //   >
+//   //     ${prefix}
+//   //   </button>`
+//   //   )
+//   //   .join('');
+
+//   return `<html>
+//   <head>
+//     <style>${styles}</style>
+//   </head>
+//   <body class="${themes[0].prefix}">
+//   </body>
+// </html>`;
+// };
 
 const preRenderedAtoms = preRenderAtoms();
-const styles = [renderAtoms(preRenderedAtoms)].join('\n');
-fs.writeFileSync(rendering.outfile, styles, 'utf-8');
-fs.writeFileSync('index.html', renderKitchenSink(styles), 'utf-8');
+const preRenderedElements = preRenderElements(preRenderedAtoms);
+console.log(preRenderedElements);
+// const styles = [renderAtoms(preRenderedAtoms)].join('\n');
+// console.log(preRenderedElements);
+// fs.writeFileSync(rendering.outfile, styles, 'utf-8');
+// fs.writeFileSync('index.html', renderKitchenSink(), 'utf-8');

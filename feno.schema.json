@@ -110,8 +110,7 @@
               "button": {
                 "description": "Button",
                 "type": "string",
-                "default":""
-                }
+                "default": ""
               },
               "required": ["button"]
             }

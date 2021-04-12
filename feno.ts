@@ -2,6 +2,7 @@ import fs from 'fs';
 import { rendering, themes } from './feno.json';
 
 type PreRenderedAtoms = Record<string, string>;
+type PreRenderedElements = Record<string, string>;
 
 const preRenderAtoms = () => {
   const collection: Record<string, string> = {};
@@ -28,62 +29,48 @@ const preRenderAtoms = () => {
   return collection;
 };
 
-const preRenderElements = (preRenderedAtoms: PreRenderedAtoms) => {
-  const collection: Record<string, { atoms: string; styles: string[] }> = {};
-
-  // buttons
-  collection['button'] = {
-    atoms: themes.map((t) => `${t.elements.button}`).join(' '),
-    styles: themes.reduce(
-      (acc, curr) => [
-        ...acc,
-        ...curr.elements.button.split(' ').map((el) => preRenderedAtoms[el]),
-      ],
-      [] as string[]
-    ),
-  };
+const preRenderElements = () => {
+  const collection: Record<string, string> = {};
+  collection.button = themes.map((t) => `${t.elements.button}`).join(' ');
   return collection;
 };
 
 const renderAtoms = (preRenderedAtoms: PreRenderedAtoms) => {
   return Object.entries(preRenderedAtoms)
-    .map(([theme, atoms]) =>
-      Object.entries(atoms)
-        .map(([k, v]) => `.${theme} .${theme}_${k} { ${v} }`)
-        .join('\n')
-    )
+    .map(([k, v]) => `.${k.split('_')[0]} .${k} { ${v}; }`)
     .join('\n');
 };
 
-// const renderKitchenSink = () => {
-//   // Buttons
-
-//   // const themeButtons = themes
-//   //   .map(
-//   //     ({ prefix }) => `<button
-//   //     class="${themes
-//   //       .map(({ elements }) => `${elements.button.atoms}`)
-//   //       .join(' ')}"
-//   //     onclick="document.body.className='${prefix}'"
-//   //   >
-//   //     ${prefix}
-//   //   </button>`
-//   //   )
-//   //   .join('');
-
-//   return `<html>
-//   <head>
-//     <style>${styles}</style>
-//   </head>
-//   <body class="${themes[0].prefix}">
-//   </body>
-// </html>`;
-// };
+const renderKitchenSink = (
+  styles: string = '',
+  preRenderedElements: PreRenderedElements
+) => {
+  return `<html>
+  <head>
+    <style>${styles}</style>
+  </head>
+  <body class="${themes[0].prefix}">
+  ${themes
+    .map(
+      (theme) => ` <button
+      class="${preRenderedElements.button}"
+      onclick="document.body.className='${theme.prefix}'"
+    >
+      ${theme.prefix}
+    </button>`
+    )
+    .join('\n')}
+   
+  </body>
+</html>`;
+};
 
 const preRenderedAtoms = preRenderAtoms();
-const preRenderedElements = preRenderElements(preRenderedAtoms);
-console.log(preRenderedElements);
-// const styles = [renderAtoms(preRenderedAtoms)].join('\n');
-// console.log(preRenderedElements);
-// fs.writeFileSync(rendering.outfile, styles, 'utf-8');
-// fs.writeFileSync('index.html', renderKitchenSink(), 'utf-8');
+const preRenderedElements = preRenderElements();
+const styles = [renderAtoms(preRenderedAtoms)].join('\n');
+fs.writeFileSync(rendering.outfile, styles, 'utf-8');
+fs.writeFileSync(
+  'index.html',
+  renderKitchenSink(styles, preRenderedElements),
+  'utf-8'
+);

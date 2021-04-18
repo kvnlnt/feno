@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <style>
+.lgt {
+--black: hsl(0,100%,0%);
+--white: hsl(100,100%,100%);
+--grey: hsl(100,100%,50%);
+}
+.drk {
+--black: hsl(0,100%,0%);
+--white: hsl(100,100%,100%);
+--grey: hsl(100,100%,50%);
+}
+.ff { font-family: var(--a); }
+.ff { font-family: var(--b); }
+.ff { font-family: var(--c); }
+.fc { color: var(--black); }
+.fc { color: var(--white); }
+.fc { color: var(--grey); }
+.bgc { background-color: var(--black); }
+.bgc { background-color: var(--white); }
+.bgc { background-color: var(--grey); }
+.gc { grid-template-columns:repeat(1,1fr); }
+.gc { grid-template-columns:repeat(2,1fr); }
+.gc { grid-template-columns:repeat(3,1fr); }
+.gc { grid-template-columns:repeat(4,1fr); }
+.gc { grid-template-columns:repeat(5,1fr); }
+.gc { grid-template-columns:repeat(6,1fr); }
+.gc { grid-template-columns:repeat(7,1fr); }
+.gc { grid-template-columns:repeat(8,1fr); }
+.gc { grid-template-columns:repeat(9,1fr); }
+.gc { grid-template-columns:repeat(10,1fr); }
+.gc { grid-template-columns:repeat(11,1fr); }
+.gc { grid-template-columns:repeat(12,1fr); }
+.gr { grid-template-rows:auto; }
+    </style>
+  </head>
+  <body class="lgt">
+   <button
+      class="lgt_bgc_black lgt_fc_white lgt_ff_a drk_bgc_black drk_fc_white drk_ff_a"
+      style="cursor:pointer"
+      onclick="document.body.className='lgt'"
+    >
+      lgt
+    </button>
+ <button
+      class="lgt_bgc_black lgt_fc_white lgt_ff_a drk_bgc_black drk_fc_white drk_ff_a"
+      style="cursor:pointer"
+      onclick="document.body.className='drk'"
+    >
+      drk
+    </button>
+   
+  </body>
+</html>

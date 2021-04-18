@@ -1,0 +1,26 @@
+{
+  "name": "feno",
+  "version": "1.0.0",
+  "description": "A Genetically Engineered Polymorphic Design System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy": "cp src/index.html dist/index.html",
+    "build": "npm run copy && esbuild src/app.ts --bundle --outfile=dist/feno.js",
+    "watch": "npm run copy && esbuild src/app.ts --bundle --watch --outfile=dist/feno.js",
+    "serve": "http-server ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvnlnt/feno.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kvnlnt/feno/issues"
+  },
+  "homepage": "https://github.com/kvnlnt/feno#readme",
+  "dependencies": {
+    "esbuild": "^0.11.10"
+  }
+}

@@ -1,4 +1,4 @@
-import { h } from 'src/lib/h';
+import { h } from 'src/lib/hyperscript';
 
 interface Button {
   text: string;

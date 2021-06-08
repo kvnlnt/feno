@@ -1,31 +1,20 @@
-import { MainMenu } from './elements/Menus';
-import { ShellMain } from './elements/Shells';
-import dom, { Dom } from './lib/dom';
-import Atoms from './pages/Atoms';
-import Components from './pages/Components';
-import Elements from './pages/Elements';
-import Start from './pages/Start';
-import Types from './pages/Types';
-import {
-  atomsRoute,
-  compoenntsRoute,
-  elementsRoute,
-  typesRoute,
-} from './routes';
+import { MoodEntity } from './entities/MoodEntity';
+import { dom, Dom } from './lib/dom';
+import { StartPage } from './pages/StartPage';
+import { Types } from './pages/Types/fsm';
 
 const render = (root: Dom) => {
   const route = window.location.hash.replace('#', '');
-  const content: Dom = dom();
-  const shell: HTMLElement = ShellMain({
-    menu: MainMenu(),
-    content: content.el,
-  });
-  root.swap(shell);
-  if (route === '') new Start(content).render();
-  if (route === typesRoute()) new Types(content).render();
-  if (route === atomsRoute()) new Atoms(content).render();
-  if (route === elementsRoute()) new Elements(content).render();
-  if (route === compoenntsRoute()) new Components(content).render();
+  if (route === '') root.swap(StartPage());
+  if (route === '/types')
+    new Types({
+      root,
+      moodStore: new MoodEntity({
+        types: ['happy', 'calm', 'cautious', 'alarmed'],
+        newType: '',
+        deleteType: '',
+      }),
+    });
 };
 
 window.addEventListener('DOMContentLoaded', () => {

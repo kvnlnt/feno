@@ -1,4 +1,4 @@
-import { h } from 'src/lib/h';
+import { h } from 'src/lib/hyperscript';
 
 export const BoxRow = h('div', ['style', 'display:flex; flex-direction:row;']);
 

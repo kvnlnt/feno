@@ -1,4 +1,4 @@
-import { h } from 'src/lib/h';
+import { h } from 'src/lib/hyperscript';
 
 export const Form = h(
   'form',
@@ -24,14 +24,26 @@ export const Legend = h('legend', [
 ]);
 
 interface TextInputProps {
+  placeholder?: string;
   value: string;
   onInput?: (e: InputEvent) => void;
 }
-export const TextInput = ({ value, onInput }: TextInputProps) =>
+export const TextInput = ({ value, onInput, placeholder }: TextInputProps) =>
   h(
     'input',
     ['type', 'text'],
     ['style', 'display:block'],
     ['value', value],
-    ['oninput', onInput]
+    ['oninput', onInput],
+    ['placeholder', placeholder]
+  )();
+
+export const ColorInput = ({ value, onInput, placeholder }: TextInputProps) =>
+  h(
+    'input',
+    ['type', 'color'],
+    ['style', 'display:block'],
+    ['value', value],
+    ['onchange', onInput],
+    ['placeholder', placeholder]
   )();

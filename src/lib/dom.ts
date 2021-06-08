@@ -1,4 +1,4 @@
-import { h } from './h';
+import { h } from './hyperscript';
 
 export interface Dom {
   el: HTMLElement;
@@ -6,10 +6,7 @@ export interface Dom {
   clear: () => void;
 }
 
-export default (
-  tag: keyof HTMLElementTagNameMap = 'div',
-  contents: HTMLElement = null
-): Dom => {
+export const dom = (tag: keyof HTMLElementTagNameMap = 'div', contents: HTMLElement = null): Dom => {
   const el = h(tag)(contents);
   const clear = () => (el.innerHTML = '');
   const swap = (contents: HTMLElement) => {

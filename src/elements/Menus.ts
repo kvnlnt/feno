@@ -1,4 +1,4 @@
-import { h } from 'src/lib/h';
+import { h } from 'src/lib/hyperscript';
 
 const MainMenuItem = (href: string, text: string) =>
   h('a', ['href', href], ['style', ''])(text);

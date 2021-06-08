@@ -3,13 +3,15 @@ enum NamespaceEnum {
   svg = 'http://www.w3.org/2000/svg',
 }
 
+export const H: Record<string, Element> = {};
+
 type Tags<T extends keyof HTMLElementTagNameMap> = {
   tag: T | string;
   attrs?: Attrs<T>[];
   children: Tags<T>[];
 };
 
-type Attrs<X extends keyof Partial<HTMLElementTagNameMap>> = [
+export type Attrs<X extends keyof Partial<HTMLElementTagNameMap>> = [
   Extract<keyof HTMLElementTagNameMap[X], string> | 'class',
   string | number | Function
 ];
@@ -28,6 +30,8 @@ function Hyperscript<T extends keyof HTMLElementTagNameMap>(
     } else {
       h.setAttribute(k, v.toString());
     }
+    // add it to the H collection
+    if (k === 'id') H[v as string] = h;
   });
   children.forEach((child) => {
     if (child instanceof Node) h.appendChild(child);

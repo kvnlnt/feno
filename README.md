@@ -1,64 +1,33 @@
-# Feno
-A Genetically Engineered Polymorphic Design System
+# FEDS
 
-## Summary
-In genetics, the [phenotype](https://en.wikipedia.org/wiki/Phenotype) (from Greek φαινο- 'showing', and τύπος 'type') is the set of observable characteristics or traits of an organism. The term covers the organism's morphology or physical form and structure, its developmental processes, its biochemical and physiological properties, its behavior, and the products of behavior. 
+Front-end Development System
 
-## Goals
-- [x] KISS principle
-- [x] Standards Compliant
-- [x] Incremental Adoption
-- [x] Framework Agnostic
+![Build Status](https://reportingsystemsinc.visualstudio.com/Development/_apis/build/status/FEDS-build-pipeline)
 
-## Concepts
-### Terms
-- Types = Expressions
-- Tokens = Theme
-- Atoms = Types x Tokens
-- Elements = Atoms x Atoms
-- Components = Elements x Elements
+## Purpose
 
-### Theory
-#### Terms
-- Entity = This ojbect
-- Expression = With this emotion
-- Environment = In this context
-- Attribute = Color, Size, Position
+I want to build front-end applications that live long healthy lives from their childhood on into adulthood. In order to keep them healthy and alive I need to protect them, show them love and make sure I don't feed them anything that will make them sick. If at some point in time my apps happen to come down with something, I want to be able to give them whatever they need to get them back on their feet. Most frontend-apps today start their lives out on a solid diet of candy and steroids. They are neglected as they grow up and as they age they develop behavioral problems. 
 
-#### Equation
-P<sub>A</sub> = B(C)
+I see (and use) all the modern tools one thinks of when building a modern front-end application but I only do so because I think at the end of the day "it takes a village". Community support is vital and beats some undocumented, untested homegrown solution built by "that guy" who went rogue and created a overengineered masterpiece-of-sh*t. However, adding a bazillion dependencies isn't much better, the two are equal and opposite errors.
 
-A property of an entity is equal to its emotion operating as a function of its environment. This could be expressed as:
-- *A* = Entity (example: `button` element)
-- *B* = Expression (example: an "alert" state)
-- *C* = Environment (example: in a form)
-- *P* = Attribute (example: background color)
+With FEDS I want to create a modern beautiful batteries-included front-end framework for building business applications. Applications where money is on the line, where security is on the line, where quality and performance are important and where time is of the essence. A framework that is easy to change, easy on the eyes, easy on users, easy on devs and easy on the business. 
 
-## Conventions
+## Features
 
-### Atoms
-All atoms are classes and make up the core css rules. Each class has the following naming convention:
+- [] 100% Self Sufficient (Includes: Design System) 
+- [] 100% Dependency free
+- [] 100% Code Coverage
+- [] 100% Typescript
+- [] 100% Documented
+- [] 100% CI friendly
+- [] 100% Standards based
+- [] 100% FedRAMP compliant
 
-`[theme]`\_`[attribute]`\_`[expression]`
+## Principles
 
-#### Example: `.dark_bg_alert`
-```
-  <button class="dark_bg_alert"/>
-```
+- [] Clean Code 
+- [] Clean Architecture
+- [] Atomic Design 
+- [] Responsive Design
+- [] Low Coupling / High Cohesion
 
-### Elements
-The **FENO**Type designer allows you to create *Elements* which are nothing more than `Atoms` applied to markup. It follows a similar naming convention to `Atoms`.
-
-`[theme]`\_`[environment]`\_`[expression]`\_`[element]`
-
-A configuration that used the following `Atoms`:
-- dark_bg_alert
-- dark_txt_white
-- dark_fs_lg
-
-This would render the following cut/paste markup:
-
-```
-// Suggested Name: FormAlertButton
-<button class="dark_bg_alert dark_txt_white dark_fs_lg"/>
-```

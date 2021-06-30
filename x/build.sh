@@ -1,1 +1,0 @@
-ts-node feno.ts

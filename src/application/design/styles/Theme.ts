@@ -1,88 +1,36 @@
-type rgba = `rgba(${number},${number},${number},${number})`;
+import { LOCAL_STORAGE, ROOT } from 'src/adaptors/config';
+import { palette } from './Palette';
 
-interface Theme {
-  success_bg: rgba;
-  success_fg: rgba;
-  success_fc: rgba;
-  warning_bg: rgba;
-  warning_fg: rgba;
-  warning_fc: rgba;
-  danger_bg: rgba;
-  danger_fg: rgba;
-  danger_fc: rgba;
-  info_bg: rgba;
-  info_fg: rgba;
-  info_fc: rgba;
-  mute_bg: rgba;
-  mute_fg: rgba;
-  mute_fc: rgba;
-}
-
-const dark: Theme = {
-  success_bg: 'rgba(0,0,0,1)',
-  success_fg: 'rgba(0,0,0,1)',
-  success_fc: 'rgba(0,0,0,1)',
-  warning_bg: 'rgba(0,0,0,1)',
-  warning_fg: 'rgba(0,0,0,1)',
-  warning_fc: 'rgba(0,0,0,1)',
-  danger_bg: 'rgba(0,0,0,1)',
-  danger_fg: 'rgba(0,0,0,1)',
-  danger_fc: 'rgba(0,0,0,1)',
-  info_bg: 'rgba(0,0,0,1)',
-  info_fg: 'rgba(0,0,0,1)',
-  info_fc: 'rgba(0,0,0,1)',
-  mute_bg: 'rgba(0,0,0,1)',
-  mute_fg: 'rgba(0,0,0,1)',
-  mute_fc: 'rgba(0,0,0,1)',
+const Themes = {
+  dark: 'dark',
+  light: 'light',
 };
 
-const light: Theme = {
-  success_bg: 'rgba(255,255,255,1)',
-  success_fg: 'rgba(255,255,255,1)',
-  success_fc: 'rgba(255,255,255,1)',
-  warning_bg: 'rgba(255,255,255,1)',
-  warning_fg: 'rgba(255,255,255,1)',
-  warning_fc: 'rgba(255,255,255,1)',
-  danger_bg: 'rgba(255,255,255,1)',
-  danger_fg: 'rgba(255,255,255,1)',
-  danger_fc: 'rgba(255,255,255,1)',
-  info_bg: 'rgba(255,255,255,1)',
-  info_fg: 'rgba(255,255,255,1)',
-  info_fc: 'rgba(255,255,255,1)',
-  mute_bg: 'rgba(255,255,255,1)',
-  mute_fg: 'rgba(255,255,255,1)',
-  mute_fc: 'rgba(255,255,255,1)',
+export const style = (...styleList: [keyof typeof palette, ...boolean[]][]): string => {
+  const filteredStyles = styleList.filter((item) => item.slice(1, item.length).every((check) => check));
+  const keys = filteredStyles.map((item) => item[0]);
+  const values = keys.map((s) => palette[s]).join(';');
+  return values;
 };
 
-const render = (name: string, theme: Theme): void => {
-  const styles: string[] = [];
-  Object.entries(theme).forEach(([k, v]) => styles.push(`--${k}: ${v};`));
-  const style = document.createElement('style');
-  style.id = name;
-  style.innerHTML = `.${name} {\n ${styles.join('\n')} \n}`;
-  document.getElementsByTagName('head')[0].appendChild(style);
-};
+export const isTheme = (theme: keyof typeof Themes) => theme === getTheme();
 
-const reset = () => {
-  const style = document.createElement('style');
-  style.id = 'reset';
-  style.innerHTML = `html, body { margin:0; }`;
-  document.getElementsByTagName('head')[0].appendChild(style);
-};
+export const getTheme = () => localStorage.getItem(LOCAL_STORAGE.THEME);
 
-export const Styles = ({ theme }: { theme: 'dark' | 'light' }) => {
-  reset();
-  render('dark', dark);
-  render('light', light);
+export const setTheme = (theme: keyof typeof Themes) => {
+  Object.entries(Themes).forEach(([k]) => document.body.classList.remove(k));
+  localStorage.setItem(LOCAL_STORAGE.THEME, theme);
   document.body.classList.add(theme);
 };
 
-type CssCustomProperty = `var(--${string})`;
-type CssKeys = keyof typeof dark;
-export const theme = ((): {
-  [key in CssKeys]: CssCustomProperty;
-} => {
-  const css: any = {};
-  Object.entries(dark).forEach(([k]) => (css[k] = `var(--${k})`));
-  return css;
-})();
+export const Theme = (theme: keyof typeof Themes = 'dark') => {
+  const body = document.body;
+  body.style.margin = '0px';
+  const root = document.createElement('div');
+  root.id = ROOT;
+  root.style.backgroundColor = style(['black_05', isTheme('light')], ['black_90', isTheme('dark')]);
+  root.style.color = style(['black_100', isTheme('light')], ['white_80', isTheme('dark')]);
+  root.style.fontFamily = 'Arial';
+  document.body.appendChild(root);
+  setTheme(<keyof typeof Themes>localStorage.getItem(LOCAL_STORAGE.THEME) || theme);
+};

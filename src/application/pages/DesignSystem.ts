@@ -1,6 +1,6 @@
-import { PAGES } from 'src/adaptors/config';
+import { PAGES, ROOT } from 'src/adaptors/config';
 import { VerticalMenu } from '../design/elements/Menus';
-import { ShellMain } from '../design/elements/Shells';
+import { DashboardShell } from '../design/elements/Shells';
 
 export interface DesignSystemOptions {
   section: DesignSystemSections;
@@ -19,7 +19,7 @@ export type DesignSystemSections =
 
 export class DesignSystem {
   title: string = 'Design System';
-  page: HTMLElement = document.querySelector('#page');
+  page: HTMLElement = document.querySelector(`#${ROOT}`);
   section: DesignSystemSections = 'buttons';
   constructor({ section }: DesignSystemOptions) {
     this.section = section;
@@ -27,7 +27,7 @@ export class DesignSystem {
   }
   render() {
     this.page.innerHTML = '';
-    const content = VerticalMenu([
+    const menu = VerticalMenu([
       {
         text: 'Boxes',
         href: `?page=${PAGES.DESIGN}&section=boxes`,
@@ -65,7 +65,9 @@ export class DesignSystem {
         isSelected: this.section === 'typography',
       },
     ]);
-    this.page.appendChild(ShellMain({ content }));
+    const content = document.createElement('div');
+    content.innerText = this.section;
+    this.page.appendChild(DashboardShell({ menu, content }));
   }
   static getSectionByString(str: string): DesignSystemSections {
     let section: DesignSystemSections = '';

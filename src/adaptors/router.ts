@@ -2,8 +2,7 @@ import { DesignSystem } from 'src/application/pages/DesignSystem';
 import { Home } from 'src/application/pages/Home';
 import { PAGES } from './config';
 
-export const route = () => {
-  console.log('page change');
+export const Route = () => {
   const params: URLSearchParams = new URLSearchParams(window.location.search);
   const page = params.get('page');
   if (page === PAGES.HOME || !page) new Home({});
